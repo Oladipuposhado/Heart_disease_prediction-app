@@ -9,6 +9,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
+import sklearn
 
 #load the model
 with open("heart_disease.pkl", "rb") as f:
