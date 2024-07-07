@@ -9,12 +9,17 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-import sklearn
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
 
 #load the model
-
-with open("heart_disease.pkl", "rb") as f:
-   rf = pickle.load(f)
+try:
+    with open("heart_disease.pkl", "rb") as f:
+        rf = pickle.load(f)
+except Exception as e:
+    logging.exception("Error loading pickle file")
+    raise
 
 #Title 
 st.title('Heart Attack prediction App')
