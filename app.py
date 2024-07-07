@@ -12,9 +12,10 @@ import pickle
 import sklearn
 
 #load the model
+
 with open("heart_disease.pkl", "rb") as f:
    rf = pickle.load(f)
-    
+
 #Title 
 st.title('Heart Attack prediction App')
 
