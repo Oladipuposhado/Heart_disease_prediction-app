@@ -61,20 +61,22 @@ def user_input_features():
 
 input_df = user_input_features()
 
-# Check for missing values
-if input_df.isnull().values.any():
-    st.error('Input contains missing values. Please provide all inputs.')
-else:
-    # Print input data frame for debugging
-    st.write('Input Data Frame:', input_df)
+#prediction button
+if st.button('Predict'):
+     #Ensure the input data matches the model's expected features
+    expected_features = ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal']
+    
+    if set(input_df.columns) != set(expected_features):
+        st.error(f"Input features do not match expected features: {expected_features}")
+    elif 'rf' in locals():
+        try:
+            prediction = rf.predict(input_df)
+            st.subheader('Prediction')
+            st.write('You are at a High Risk of Having a Heart Attack' if prediction[0] == 1 else 'You are at a Low Risk of Having a Heart Attack')
+        except ValueError as e:
+            st.error(f"Prediction error: {e}")
+    else:
+        st.error("Model is not loaded or input features are incorrect, prediction cannot be made.")
+        
 
-    # Prediction
-    try:
-        prediction = rf.predict(input_df)
-
-        # Output
-        st.subheader('Prediction')
-        st.write('Heart Attack' if prediction[0] == 1 else 'No Heart Attack')
-    except Exception as e:
-        st.error(f"An error occurred during prediction: {e}")
     
