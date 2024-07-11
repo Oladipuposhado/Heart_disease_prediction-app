@@ -10,6 +10,7 @@ import pandas as pd
 import numpy as np
 import pickle
 import logging
+import sklearn
 
 logging.basicConfig(level=logging.DEBUG)
 
