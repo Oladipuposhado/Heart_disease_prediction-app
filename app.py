@@ -16,8 +16,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 #load the model
 try:
-    with open("heart_disease_new.pkl", "rb") as f:
-        model = pickle.load(f)
+    with open("heart_disease.pkl", "rb") as f:
+        rf= pickle.load(f)
 except Exception as e:
     logging.exception("Error loading pickle file")
     raise
