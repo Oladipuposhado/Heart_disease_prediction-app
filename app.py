@@ -75,7 +75,7 @@ if st.button('Predict'):
             st.write('You are at a High Risk of Having a Heart Attack' if prediction[0] == 1 else 'You are at a Low Risk of Having a Heart Attack')
         except AttributeError as e:
             logging.exception("Attribute error during prediction")
-            st.error("This is an attribute error")
+            st.error(f"Prediction error : {e}")
         except ValueError as e:
             st.error(f"Prediction error: {e}")
     else:
