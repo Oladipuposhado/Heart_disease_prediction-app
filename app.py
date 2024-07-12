@@ -20,7 +20,8 @@ try:
         rf = pickle.load(f)
 except Exception as e:
     logging.exception("Error loading pickle file")
-    raise
+    rf =None
+    st.error("Error loading the model please check the logs for more details.")
 
 #Title 
 st.title('Heart Attack prediction App')
