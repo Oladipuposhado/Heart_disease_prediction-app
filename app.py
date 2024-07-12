@@ -20,7 +20,7 @@ try:
         rf = pickle.load(f)
 except Exception as e:
     logging.exception("Error loading pickle file")
-    rf =None
+    rf =raise
     st.error("Error loading the model please check the logs for more details.")
 
 #Title 
