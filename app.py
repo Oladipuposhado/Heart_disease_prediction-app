@@ -9,6 +9,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
+import joblib
 import logging
 
 
@@ -18,7 +19,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 with open("heart_disease.pkl", "rb") as f:
     try:
-        rf = pickle.load(f)
+        rf = joblib.load(f)
     except Exception as e:
         logging.exception("Error loading pickle file")
         raise e
