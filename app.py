@@ -73,7 +73,8 @@ if st.button('Predict'):
             prediction = rf.predict(input_df)
             st.subheader('Prediction')
             st.write('You are at a High Risk of Having a Heart Attack' if prediction[0] == 1 else 'You are at a Low Risk of Having a Heart Attack')
-        except AttributeError as a:
+        except AttributeError as e:
+            logging.exception("Attribute error during prediction")
             st.error("This is an attribute error")
         except ValueError as e:
             st.error(f"Prediction error: {e}")
