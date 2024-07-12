@@ -20,7 +20,7 @@ with open("heart_disease.pkl", "rb") as f:
     try:
         rf = pickle.load(f)
     except Exception as e:
-    logging.exception("Error loading pickle file")
+        logging.exception("Error loading pickle file")
     raise
     st.error("Error loading the model please check the logs for more details.")
 
