@@ -15,15 +15,14 @@ import logging
 
 logging.basicConfig(level=logging.DEBUG)
 
-#load the model
 
-with open("heart_disease.pkl", "rb") as f:
-    try:
+# Load the model
+try:
+    with open("heart_disease.pkl", "rb") as f:
         rf = joblib.load(f)
-    except Exception as e:
-        logging.exception("Error loading pickle file")
-        raise e
-    st.error("Error loading the model please check the logs for more details.")
+except Exception as e:
+    logging.exception("Error loading pickle file")
+    st.error(f"Error loading the model: {str(e)}")
 
 #Title 
 st.title('Heart Attack prediction App')
@@ -64,25 +63,22 @@ def user_input_features():
 
 input_df = user_input_features()
 
-#prediction button
+
+# Prediction button
 if st.button('Predict'):
-     #Ensure the input data matches the model's expected features
     expected_features = ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal']
-    
+
     if set(input_df.columns) != set(expected_features):
         st.error(f"Input features do not match expected features: {expected_features}")
-    elif 'rf' in locals():
+    elif 'rf' in locals() and isinstance(rf, joblib.base.DeserializedObject):
         try:
             prediction = rf.predict(input_df)
             st.subheader('Prediction')
             st.write('You are at a High Risk of Having a Heart Attack' if prediction[0] == 1 else 'You are at a Low Risk of Having a Heart Attack')
-        except AttributeError as e:
-            logging.exception("Attribute error during prediction")
-            st.error(f"Prediction error : {e}")
-        except ValueError as e:
-            st.error(f"Prediction error: {e}")
+        except Exception as e:
+            logging.exception("Error during prediction")
+            st.error(f"Prediction error: {str(e)}")
     else:
         st.error("Model is not loaded or input features are incorrect, prediction cannot be made.")
-        
 
     
