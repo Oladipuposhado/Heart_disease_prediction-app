@@ -19,7 +19,7 @@ logging.basicConfig(level=logging.DEBUG)
 class HeartDiseaseInput(BaseModel):
     age: int = Field(ge=29, le=54)  # Age between 29 and 54
     sex: int = Field(ge=0, le=1, description= "1 for male 0 for female")
-    cp = int = Field(ge=0, le=3) #Chest pain (0-3)
+    cp: int = Field(ge=0, le=3) #Chest pain (0-3)
     trestbps: int = Field(ge=94, le=200) #Resting blood pressure (94-200)
     chol: int = Field(ge=126, le=246) #Cholesterol serum (126- 246)
     fbs: int = Field(ge=0, le=1,)  #'Fasting Blood Sugar > 120 mg/dl' (0-1)
