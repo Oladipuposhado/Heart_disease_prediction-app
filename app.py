@@ -11,18 +11,40 @@ import numpy as np
 import pickle
 import joblib
 import logging
+from pydantic import Basemodel, Field
 
 
 logging.basicConfig(level=logging.DEBUG)
 
+class HeartDiseaseInput(Basemodel):
+    age: int = Field(ge=29, le=54)  # Age between 29 and 54
+    sex: int = Field(ge=0, le=1, description= "1 for male 0 for female")
+    cp = int = Field(ge=0, le=3) #Chest pain (0-3)
+    trestbps: int = Field(ge=94, le=200) #Resting blood pressure (94-200)
+    chol: int = Field(ge=126, le=246) #Cholesterol serum (126- 246)
+    fbs: int = Field(ge=0, le=1,)  #'Fasting Blood Sugar > 120 mg/dl' (0-1)
+    restech : int = Field(ge=0, le=2) #Resting electrocardigraphic  results  (0-2
+    thalach: int = Field(ge=71, le=150) #Maximum heart rate achieved (71-150) 
+    exang: int = Field(ge=0, le=2) #Exercise induced angina(0-2)
+    oldpeak: float = Field(ge=0.0, le=1.0) #depression induced by exercise
+    slope: int = Field(ge=0, le=2) #Slope of the Peak Exercise ST Segment (0-2)
+    ca: int = Field(ge=0, le=2) #Number of Major Vessels Colored by Fluoroscopy (0-2)
+    thal: int = Field(ge=0, le=2) #Thalassemia (0-2)
 
-# Load the model
-try:
-    with open("heart_disease.pkl", "rb") as f:
-        rf = joblib.load(f)
-except Exception as e:
-    logging.exception("Error loading pickle file")
-    st.error(f"Error loading the model: {str(e)}")
+
+
+
+# Function to load the model
+@st.cache_resource
+def load_model():
+    try:
+        with open("heart_disease.pkl", "rb") as f:
+            model = joblib.load(f)
+        return model
+    except Exception as e:
+        logging.exception("Error loading model")
+        st.error(f"Error loading the model: {str(e)}")
+        return None
 
 #Title 
 st.title('Heart Attack prediction App')
@@ -64,6 +86,38 @@ def user_input_features():
 input_df = user_input_features()
 
 
+# Main prediction function
+def make_prediction(model, input_data):
+    try:
+        validated_input = HeartDiseaseInput(**input_data)
+        input_df = pd.DataFrame([validated_input.dict()])
+
+        # Ensure model is loaded
+        if model is not None:
+            prediction = model.predict(input_df)
+            result = 'High Risk of Heart Attack' if prediction[0] == 1 else 'Low Risk of Heart Attack'
+            st.subheader('Prediction Result')
+            st.success(result)
+        else:
+            st.error("The model is not loaded, unable to make predictions.")
+    except ValidationError as e:
+        st.error(f"Input validation error: {e}")
+    except Exception as e:
+        logging.exception("Error during prediction")
+        st.error(f"An error occurred during prediction: {str(e)}")
+
+# Streamlit app interface
+st.title('Heart Attack Prediction App')
+
+# Load the model once (cached)
+rf_model = load_model()
+
+# Get user input
+user_input = get_user_input()
+
+# Prediction button
+if st.button('Predict'):
+    make_prediction(rf_model, user_input)
 # Prediction button
 if st.button('Predict'):
     expected_features = ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal']
