@@ -11,12 +11,12 @@ import numpy as np
 import pickle
 import joblib
 import logging
-from pydantic import Basemodel, Field
+from pydantic import BaseModel, Field
 
 
 logging.basicConfig(level=logging.DEBUG)
 
-class HeartDiseaseInput(Basemodel):
+class HeartDiseaseInput(BaseModel):
     age: int = Field(ge=29, le=54)  # Age between 29 and 54
     sex: int = Field(ge=0, le=1, description= "1 for male 0 for female")
     cp = int = Field(ge=0, le=3) #Chest pain (0-3)
