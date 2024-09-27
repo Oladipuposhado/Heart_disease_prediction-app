@@ -119,20 +119,19 @@ user_input = user_input_features()
 if st.button('Predict'):
     make_prediction(rf_model, user_input)
 # Prediction button
-if st.button('Predict'):
-    expected_features = ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal']
+#if st.button('Predict'):
+    #expected_features = ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal']
 
-    if set(input_df.columns) != set(expected_features):
-        st.error(f"Input features do not match expected features: {expected_features}")
-    elif 'rf' in locals() and isinstance(rf, joblib.base.DeserializedObject):
-        try:
-            prediction = rf.predict(input_df)
-            st.subheader('Prediction')
-            st.write('You are at a High Risk of Having a Heart Attack' if prediction[0] == 1 else 'You are at a Low Risk of Having a Heart Attack')
-        except Exception as e:
-            logging.exception("Error during prediction")
-            st.error(f"Prediction error: {str(e)}")
-    else:
-        st.error("Model is not loaded or input features are incorrect, prediction cannot be made.")
+    #if set(input_df.columns) != set(expected_features):
+        #st.error(f"Input features do not match expected features: {expected_features}")
+    #elif 'rf' in locals() and isinstance(rf, joblib.base.DeserializedObject):
+        #try:
+            #prediction = rf.predict(input_df)
+           # st.subheader('Prediction')
+            #except Exception as e:
+            #logging.exception("Error during prediction")
+            #st.error(f"Prediction error: {str(e)}")
+    #else:
+        #st.error("Model is not loaded or input features are incorrect, prediction cannot be made.")
 
     
