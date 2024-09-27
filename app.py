@@ -11,7 +11,7 @@ import numpy as np
 import pickle
 import joblib
 import logging
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ValidationError
 
 
 logging.basicConfig(level=logging.DEBUG)
