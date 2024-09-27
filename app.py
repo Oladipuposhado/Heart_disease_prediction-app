@@ -83,7 +83,7 @@ def user_input_features():
     features = pd.DataFrame(data, index=[0])
     return features
 
-input_df = user_input_features()
+#input_df = user_input_features()
 
 
 # Main prediction function
@@ -113,7 +113,7 @@ st.title('Heart Attack Prediction App')
 rf_model = load_model()
 
 # Get user input
-user_input = get_user_input()
+user_input = user_input_features()
 
 # Prediction button
 if st.button('Predict'):
