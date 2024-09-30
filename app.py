@@ -39,7 +39,7 @@ class HeartDiseaseInput(BaseModel):
 def load_model():
     try:
         with open("heart_disease.pkl", "rb") as f:
-            model = joblib.load(f)
+            model = pickle.load(f)
         return model
     except Exception as e:
         logging.exception("Error loading model")
