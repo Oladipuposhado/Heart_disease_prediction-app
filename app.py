@@ -11,6 +11,8 @@ import numpy as np
 import pickle
 import joblib
 import logging
+import warnings
+warnings.filterwarnings('ignore')
 from pydantic import BaseModel, Field, ValidationError
 
 
