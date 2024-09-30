@@ -12,9 +12,7 @@ import pickle
 import joblib
 import logging
 import warnings
-from numpy.core.numeric import ComplexWarning  # Updated import
-warnings.filterwarnings('ignore', category=ComplexWarning)
-
+warnings.filterwarnings('ignore', category=RuntimeWarning)
 from pydantic import BaseModel, Field, ValidationError
 
 
