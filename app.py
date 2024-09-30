@@ -23,7 +23,7 @@ class HeartDiseaseInput(BaseModel):
     trestbps: int = Field(ge=94, le=200) #Resting blood pressure (94-200)
     chol: int = Field(ge=126, le=246) #Cholesterol serum (126- 246)
     fbs: int = Field(ge=0, le=1,)  #'Fasting Blood Sugar > 120 mg/dl' (0-1)
-    restech : int = Field(ge=0, le=2) #Resting electrocardigraphic  results  (0-2
+    restecg: int = Field(ge=0, le=2) #Resting electrocardigraphic  results  (0-2
     thalach: int = Field(ge=71, le=150) #Maximum heart rate achieved (71-150) 
     exang: int = Field(ge=0, le=2) #Exercise induced angina(0-2)
     oldpeak: float = Field(ge=0.0, le=1.0) #depression induced by exercise
@@ -107,7 +107,7 @@ def make_prediction(model, input_data):
         st.error(f"An error occurred during prediction: {str(e)}")
 
 # Streamlit app interface
-st.title('Heart Attack Prediction App')
+#st.title('Heart Attack Prediction App')
 
 # Load the model once (cached)
 rf_model = load_model()
