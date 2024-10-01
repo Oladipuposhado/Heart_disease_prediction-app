@@ -40,8 +40,8 @@ class HeartDiseaseInput(BaseModel):
 @st.cache_resource
 def load_model():
     try:
-        with open("heart_disease.pkl", "rb") as f:
-            model = pickle.load(f)
+        with open("heart_disease.joblib", "rb") as f:
+            model = joblib.load(f)
         return model
     except Exception as e:
         logging.exception("Error loading model")
