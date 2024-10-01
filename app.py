@@ -136,7 +136,7 @@ if st.button('Predict'):
     #else:
         #st.error("Model is not loaded or input features are incorrect, prediction cannot be made.")
 
-if __name__ == "__main__":
+if __name__ == "__app__":
     app.run()
 
     
