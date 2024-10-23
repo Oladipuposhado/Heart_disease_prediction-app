@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Jun 24 22:41:17 2024
-
-@author: shadopc
-"""
 
 import streamlit as st
 import pandas as pd
@@ -11,8 +5,8 @@ import numpy as np
 import pickle
 import joblib
 import logging
-import warnings
-warnings.filterwarnings('ignore', category=RuntimeWarning)
+#import warnings
+#warnings.filterwarnings('ignore', category=RuntimeWarning)
 from pydantic import BaseModel, Field, ValidationError
 
 
@@ -47,7 +41,10 @@ def load_model():
         logging.exception("Error loading model")
         st.error(f"Error loading the model: {str(e)}")
         return None
-
+try:
+    from numpy.core.numeric import ComplexWarning
+except ImportError as e:
+    print(f"Error importing ComplexWarning: {e}")
 #Title 
 st.title('Heart Attack prediction App')
 
