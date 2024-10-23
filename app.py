@@ -19,8 +19,8 @@ class HeartDiseaseInput(BaseModel):
     trestbps: int = Field(ge=94, le=200) #Resting blood pressure (94-200)
     chol: int = Field(ge=126, le=246) #Cholesterol serum (126- 246)
     fbs: int = Field(ge=0, le=1,)  #'Fasting Blood Sugar > 120 mg/dl' (0-1)
-    restecg: int = Field(ge=0, le=2) #Resting electrocardigraphic  results  (0-2
-    thalach: int = Field(ge=71, le=220) #Maximum heart rate achieved (71-150) 
+    restecg: int = Field(ge=0, le=2) #Resting electrocardiographic  results  (0-2
+    thalach: int = Field(ge=71, le=220) #Maximum heart rate achieved (71-220) 
     exang: int = Field(ge=0, le=2) #Exercise induced angina(0-2)
     oldpeak: float = Field(ge=0.0, le=1.0) #depression induced by exercise
     slope: int = Field(ge=0, le=2) #Slope of the Peak Exercise ST Segment (0-2)
@@ -41,10 +41,10 @@ def load_model():
         logging.exception("Error loading model")
         st.error(f"Error loading the model: {str(e)}")
         return None
-try:
-    from numpy.core.numeric import ComplexWarning
-except ImportError as e:
-    print(f"Error importing ComplexWarning: {e}")
+#try:
+    #from numpy.core.numeric import ComplexWarning
+#except ImportError as e:
+    #print(f"Error importing ComplexWarning: {e}")
 #Title 
 st.title('Heart Attack prediction App')
 
@@ -59,9 +59,9 @@ def user_input_features():
     fbs = st.selectbox('Fasting Blood Sugar > 120 mg/dl', ['True','False'])
     fbs = 0 if fbs == 'False' else 1
     restecg = st.slider('Resting Electrocardigraphic Results', 0,1,2) 
-    thalach = st.number_input('Maximum Heart rate Achieved', 71, 202, 150)
+    thalach = st.number_input('Maximum Heart rate Achieved', 71, 220, 150)
     exang = st.slider('Exercise induced Angina', 0,1,2)
-    oldpeak = st.slider('ST Depression Induvced by Exercise', 0.0,6.2,1.0)
+    oldpeak = st.slider('ST Depression Induced by Exercise', 0.0,6.2,1.0)
     slope = st.slider('Slope of the Peak Exercise ST Segment', 0,1,2)
     ca = st.slider('Number of Major Vessels Colored by Fluoroscopy', 0,1,2)
     thal = st.slider('Thalassemia', 0,1,2)
