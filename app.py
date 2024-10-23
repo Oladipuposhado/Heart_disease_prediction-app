@@ -5,8 +5,6 @@ import numpy as np
 import pickle
 import joblib
 import logging
-#import warnings
-#warnings.filterwarnings('ignore', category=RuntimeWarning)
 from pydantic import BaseModel, Field, ValidationError
 
 
@@ -41,11 +39,7 @@ def load_model():
         logging.exception("Error loading model")
         st.error(f"Error loading the model: {str(e)}")
         return None
-#try:
-    #from numpy.core.numeric import ComplexWarning
-#except ImportError as e:
-    #print(f"Error importing ComplexWarning: {e}")
-#Title 
+
 st.title('Heart Attack prediction App')
 
 #User inputs
@@ -82,9 +76,6 @@ def user_input_features():
     features = pd.DataFrame(data, index=[0])
     return features
 
-#input_df = user_input_features()
-
-
 # Main prediction function
 def make_prediction(model, input_data):
     try:
@@ -105,9 +96,6 @@ def make_prediction(model, input_data):
         logging.exception("Error during prediction")
         st.error(f"An error occurred during prediction: {str(e)}")
 
-# Streamlit app interface
-#st.title('Heart Attack Prediction App')
-
 # Load the model once (cached)
 rf_model = load_model()
 
@@ -117,21 +105,7 @@ user_input = user_input_features()
 # Prediction button
 if st.button('Predict'):
     make_prediction(rf_model, user_input)
-# Prediction button
-#if st.button('Predict'):
-    #expected_features = ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal']
-
-    #if set(input_df.columns) != set(expected_features):
-        #st.error(f"Input features do not match expected features: {expected_features}")
-    #elif 'rf' in locals() and isinstance(rf, joblib.base.DeserializedObject):
-        #try:
-            #prediction = rf.predict(input_df)
-           # st.subheader('Prediction')
-            #except Exception as e:
-            #logging.exception("Error during prediction")
-            #st.error(f"Prediction error: {str(e)}")
-    #else:
-        #st.error("Model is not loaded or input features are incorrect, prediction cannot be made.")
+    
 
 if __name__ == "__app__":
     app.run()
