@@ -55,7 +55,7 @@ def user_input_features():
     sex = 1 if sex == 'Male' else 0
     cp = st.slider('Chest Pain Type', 0,1,2,3)
     trestbps = st.slider('Resting blood pressure', 94,200,130)
-    chol = st.slider('Serum Cholesterol', 126,564,246)
+    chol = st.slider('Serum Cholesterol', 126,246)
     fbs = st.selectbox('Fasting Blood Sugar > 120 mg/dl', ['True','False'])
     fbs = 0 if fbs == 'False' else 1
     restecg = st.slider('Resting Electrocardigraphic Results', 0,1,2) 
