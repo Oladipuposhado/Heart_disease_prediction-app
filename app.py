@@ -20,7 +20,7 @@ class HeartDiseaseInput(BaseModel):
     chol: int = Field(ge=126, le=246) #Cholesterol serum (126- 246)
     fbs: int = Field(ge=0, le=1,)  #'Fasting Blood Sugar > 120 mg/dl' (0-1)
     restecg: int = Field(ge=0, le=2) #Resting electrocardigraphic  results  (0-2
-    thalach: int = Field(ge=71, le=150) #Maximum heart rate achieved (71-150) 
+    thalach: int = Field(ge=71, le=220) #Maximum heart rate achieved (71-150) 
     exang: int = Field(ge=0, le=2) #Exercise induced angina(0-2)
     oldpeak: float = Field(ge=0.0, le=1.0) #depression induced by exercise
     slope: int = Field(ge=0, le=2) #Slope of the Peak Exercise ST Segment (0-2)
