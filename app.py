@@ -61,7 +61,7 @@ def user_input_features():
     restecg = st.slider('Resting Electrocardigraphic Results', 0,1,2) 
     thalach = st.number_input('Maximum Heart rate Achieved', 71, 220, 150)
     exang = st.slider('Exercise induced Angina', 0,1,2)
-    oldpeak = st.slider('ST Depression Induced by Exercise', 0.0,6.2,1.0)
+    oldpeak = st.slider('ST Depression Induced by Exercise', 0.0,1.0)
     slope = st.slider('Slope of the Peak Exercise ST Segment', 0,1,2)
     ca = st.slider('Number of Major Vessels Colored by Fluoroscopy', 0,1,2)
     thal = st.slider('Thalassemia', 0,1,2)
