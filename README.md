@@ -27,7 +27,7 @@ Steps
 Clone the repository:
 
 git clone https://heartdiseaseprediction-app-sgjvbagduyuwq8zxfsgbmp.streamlit.app
-cd heart-disease-prediction-app
+cd https://heartdiseaseprediction-app-sgjvbagduyuwq8zxfsgbmp.streamlit.app/
 
 Install dependencies:
 
