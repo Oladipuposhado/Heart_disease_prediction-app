@@ -8,7 +8,7 @@ import logging
 from pydantic import BaseModel, Field, ValidationError
 
 
-logging.basicConfig(level=logging.DEBUG)
+#logging.basicConfig(level=logging.DEBUG)
 
 class HeartDiseaseInput(BaseModel):
     age: int = Field(ge=29, le=54)  # Age between 29 and 54
